@@ -16,7 +16,7 @@
           <h4>Name (Required)</h4>
             <input type="text" class="form-control" id="name" required>
           <h4>Link to a Picture of You (Required)</h4>
-            <input type="text" class="form-control" id="picture" required>
+            <input type="text" class="form-control" id="photo" required>
           <hr>
           <h3><strong>Question 1</strong></h3>
           <h4>I am always ready to try some delicious food even when I am full.</h4>
@@ -135,7 +135,7 @@
       <hr>
 	    <footer class="footer">
 	      <div class="container">
-		        <p><a href="">API Friends List</a> | <a href="">GitHub Repository</a></p>
+		        <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/annatly2/FriendFinder">GitHub Repository</a></p>
 	      </div>
 	    </footer>
     </div>
@@ -145,3 +145,44 @@
 
 
 </html>
+
+<script type = "text/javascript">
+
+    $(".submit").on("click", function(event){
+        event.preventDefault();
+
+    var newFriend = {
+        name: $("#name").val().trim(),
+        photo: $("#photo").val().trim(),
+        scores: [$("#q1").val(), $("#q2").val(), $("#q3").val(), $("#q4").val(), $("#q5").val(), $("#q6").val(), $("#q7").val(), $("#q8").val(), $("#q9").val(), $("#q10").val()]
+    };
+
+    console.log(newFriend);
+
+
+    $.post("/api/friends", newFriend, 
+        function(data){
+            if(data){
+                alert("You have a friend match!");
+                //module?
+            }
+            $("#name").val("");
+            $("#photo").val("");
+            $("#q1").val(0);
+            $("#q2").val(0);
+            $("#q3").val(0);
+            $("#q4").val(0);
+            $("#q5").val(0);
+            $("#q6").val(0);
+            $("#q7").val(0);
+            $("#q8").val(0);
+            $("#q9").val(0);
+            $("#q10").val(0);
+
+    });
+
+    });
+
+
+
+</script>

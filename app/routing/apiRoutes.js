@@ -10,7 +10,12 @@ module.exports = function(app){
 
   app.post("/api/friends", function(req, res){
 
-    //compatability logic
-  })
+    for(i = 0; i < friendsData.length; i++){
+      friendsData.push(req.body);
+      res.json(true);
+    }
+
+
+    });
 
 };
