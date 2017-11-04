@@ -4,4 +4,4 @@ FriendFinder is a full-stack site that will take in results from users' surveys 
 
 Express is used for handle routing. This site is deployed on Heroku here:
 
-https://fast-lowlands-44054.herokuapp.com/survey
+https://fast-lowlands-44054.herokuapp.com/
