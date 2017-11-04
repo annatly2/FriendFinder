@@ -188,7 +188,6 @@
             
             if(data){
                 // alert(data.name + " is your best friend!");
-                //code for modal but I receive this error: Uncaught TypeError: $(...).modal is not a function
                 $("#matchName").text(data.name);
                 $('#matchPhoto').attr("src", data.photo);
                 $("#resultsModal").modal('toggle');
