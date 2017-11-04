@@ -3,10 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Friend Finder Survey</title>
-    <script
-    src="https://code.jquery.com/jquery-3.2.1.js"
-    integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-    crossorigin="anonymous"></script>
     <link rel = "stylesheet" href= "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
@@ -141,9 +137,6 @@
 	      </div>
 	    </footer>
     </div>
-
-    <div id="resultsModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
   
 
           <!-- Modal-->
@@ -166,52 +159,56 @@
         </div>
 
 
-<script type = "text/javascript">
-    $(".survey").submit(function(event){
-        event.preventDefault();
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $(".survey").submit(function(event){
+            event.preventDefault();
 
-    var newFriend = {
-        name: $("#name").val().trim(),
-        photo: $("#photo").val().trim(),
-        scores: [
-            $("#q1").val(), 
-            $("#q2").val(), 
-            $("#q3").val(), 
-            $("#q4").val(), 
-            $("#q5").val(), 
-            $("#q6").val(), 
-            $("#q7").val(), 
-            $("#q8").val(), 
-            $("#q9").val(), 
-            $("#q10").val()
-        ]
-    };
-        console.log(newFriend);
+        var newFriend = {
+            name: $("#name").val().trim(),
+            photo: $("#photo").val().trim(),
+            scores: [
+                $("#q1").val(), 
+                $("#q2").val(), 
+                $("#q3").val(), 
+                $("#q4").val(), 
+                $("#q5").val(), 
+                $("#q6").val(), 
+                $("#q7").val(), 
+                $("#q8").val(), 
+                $("#q9").val(), 
+                $("#q10").val()
+            ]
+        };
+            console.log(newFriend);
 
-    $.ajax({ url:"/api/friends", contentType: "application/json", data: JSON.stringify(newFriend), type: "POST" }).done(function(data) {
-        
-        if(data){
-            alert(data.name + " is your best friend!");
-            //code for modal but I receive this error: Uncaught TypeError: $(...).modal is not a function
-                // $("#matchName").text(data.name);
-                // $('#matchPhoto').attr("src", data.photo);
-                // $("#resultsModal").modal('show');
-        }
-        //clears the form when submit buttion is pressed
-        $("#name").val("");
-        $("#photo").val("");
-        $("#q1").val(0);
-        $("#q2").val(0);
-        $("#q3").val(0);
-        $("#q4").val(0);
-        $("#q5").val(0);
-        $("#q6").val(0);
-        $("#q7").val(0);
-        $("#q8").val(0);
-        $("#q9").val(0);
-        $("#q10").val(0);
+        $.ajax({ url:"/api/friends", contentType: "application/json", data: JSON.stringify(newFriend), type: "POST" }).done(function(data) {
+            
+            if(data){
+                // alert(data.name + " is your best friend!");
+                //code for modal but I receive this error: Uncaught TypeError: $(...).modal is not a function
+                $("#matchName").text(data.name);
+                $('#matchPhoto').attr("src", data.photo);
+                $("#resultsModal").modal('toggle');
+            }
+            //clears the form when submit buttion is pressed
+            $("#name").val("");
+            $("#photo").val("");
+            $("#q1").val(0);
+            $("#q2").val(0);
+            $("#q3").val(0);
+            $("#q4").val(0);
+            $("#q5").val(0);
+            $("#q6").val(0);
+            $("#q7").val(0);
+            $("#q8").val(0);
+            $("#q9").val(0);
+            $("#q10").val(0);
+        });
     });
-});
+})
 </script>
 
 </body>
