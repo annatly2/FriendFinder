@@ -10,7 +10,6 @@
     <link rel = "stylesheet" href= "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-
     <div class = "container">
       <form class = "survey">
           <h1>Compatability Survey</h1>
@@ -143,14 +142,12 @@
 	    </footer>
     </div>
 
+<!-- insert code for modal here -->
 
 </body>
-
-
 </html>
 
 <script type = "text/javascript">
-
     $(".survey").submit(function(event){
         event.preventDefault();
 
@@ -168,18 +165,16 @@
             $("#q8").val(), 
             $("#q9").val(), 
             $("#q10").val()
-    ]
+        ]
     };
+        console.log(newFriend);
 
-    console.log(newFriend);
-
-
-    $.ajax({ url: "/api/friends", contentType: "application/json", data: JSON.stringify(newFriend), type: "POST" }).done(function(data) {
+    $.ajax({ url:"/api/friends", contentType: "application/json", data: JSON.stringify(newFriend), type: "POST" }).done(function(data) {
+        
         if(data){
             alert(data.name + " is your best friend!");
-            //module?
+            //insert code for modal to show here
         }
-
         //clears the form when submit buttion is pressed
         $("#name").val("");
         $("#photo").val("");
@@ -193,12 +188,6 @@
         $("#q8").val(0);
         $("#q9").val(0);
         $("#q10").val(0);
-
     });
-
-
-    });
-
-
-
+});
 </script>

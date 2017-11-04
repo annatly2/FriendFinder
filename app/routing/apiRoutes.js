@@ -1,16 +1,10 @@
 var friendsData = require("../data/friends.js");
 var path = require("path");
 
-var idealDifference = 0;
-
-
 module.exports = function(app){
-
   app.get("/api/friends", function(req, res){
     res.json(friendsData);
   });
-
-
 
   app.post("/api/friends", function(req, res){
     var allFriendDifferences = [];
@@ -22,9 +16,9 @@ module.exports = function(app){
         friendDifference += Math.abs(friendsData[i].scores[j] - req.body.scores[j]);
       }
       allFriendDifferences.push(friendDifference);
-
     }
     
+    //function to get the smallest number in the array
     function indexOfSmallest(a) {
       var lowest = 0;
       for (var i = 1; i < a.length; i++) {
@@ -38,9 +32,5 @@ module.exports = function(app){
 
       friendsData.push(req.body);
       res.json(bestFriend);
-    
-
-
     });
-
 };
