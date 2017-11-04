@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Friend Finder Survey</title>
-
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.js"
+    integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+    crossorigin="anonymous"></script>
     <link rel = "stylesheet" href= "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
 
     <div class = "container">
-      <form>
+      <form class = "survey">
           <h1>Compatability Survey</h1>
           <hr>
           <h3><strong>All About You!</strong></h3>
@@ -148,38 +151,51 @@
 
 <script type = "text/javascript">
 
-    $(".submit").on("click", function(event){
+    $(".survey").submit(function(event){
         event.preventDefault();
 
     var newFriend = {
         name: $("#name").val().trim(),
         photo: $("#photo").val().trim(),
-        scores: [$("#q1").val(), $("#q2").val(), $("#q3").val(), $("#q4").val(), $("#q5").val(), $("#q6").val(), $("#q7").val(), $("#q8").val(), $("#q9").val(), $("#q10").val()]
+        scores: [
+            $("#q1").val(), 
+            $("#q2").val(), 
+            $("#q3").val(), 
+            $("#q4").val(), 
+            $("#q5").val(), 
+            $("#q6").val(), 
+            $("#q7").val(), 
+            $("#q8").val(), 
+            $("#q9").val(), 
+            $("#q10").val()
+    ]
     };
 
     console.log(newFriend);
 
 
-    $.post("/api/friends", newFriend, 
-        function(data){
-            if(data){
-                alert("You have a friend match!");
-                //module?
-            }
-            $("#name").val("");
-            $("#photo").val("");
-            $("#q1").val(0);
-            $("#q2").val(0);
-            $("#q3").val(0);
-            $("#q4").val(0);
-            $("#q5").val(0);
-            $("#q6").val(0);
-            $("#q7").val(0);
-            $("#q8").val(0);
-            $("#q9").val(0);
-            $("#q10").val(0);
+    $.ajax({ url: "/api/friends", contentType: "application/json", data: JSON.stringify(newFriend), type: "POST" }).done(function(data) {
+        if(data){
+            alert(data.name + " is your best friend!");
+            //module?
+        }
+
+        //clears the form when submit buttion is pressed
+        $("#name").val("");
+        $("#photo").val("");
+        $("#q1").val(0);
+        $("#q2").val(0);
+        $("#q3").val(0);
+        $("#q4").val(0);
+        $("#q5").val(0);
+        $("#q6").val(0);
+        $("#q7").val(0);
+        $("#q8").val(0);
+        $("#q9").val(0);
+        $("#q10").val(0);
 
     });
+
 
     });
 
