@@ -13,7 +13,7 @@ module.exports = function(app){
       var friendDifference = 0;
       //loops through each score for given friend
       for(j = 0; j < friendsData[i].scores; j++){
-        friendDifference += Math.abs(friendsData[i].scores[j] - req.body.scores[j]);
+        friendDifference += Math.abs(parseInt(friendsData[i].scores[j]) - parseInt(req.body.scores[j]));
       }
       allFriendDifferences.push(friendDifference);
     }
